@@ -27,8 +27,8 @@ jobs:
         run: npm run clean
       - name: Build
         run: npm run build
-      - name: Build
-        run: ls -al && ls -al public && pwd
+      - name: ls
+        run: ls -al && ls -al public && pwd && cat public/index.html
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
