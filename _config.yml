@@ -43,19 +43,50 @@ filename_case: 0
 render_drafts: false
 post_asset_folder: false
 relative_link: false
-future: true
+# future: true
+
+# highlight:
+#   enable: false
+
+# prismjs:
+#   enable: true
+
 highlight:
   enable: true
-  line_number: true
+  line_number: false
   auto_detect: false
   tab_replace: ''
-  wrap: true
-  hljs: false
+  # wrap: true
+  hljs: true
+
 prismjs:
   enable: false
-  preprocess: true
-  line_number: true
-  tab_replace: ''
+#   preprocess: true
+#   line_number: false
+#   tab_replace: ''
+
+marked:
+  gfm: false
+  pedantic: false
+  breaks: true
+  smartLists: true
+  smartypants: true
+  quotes: '“”‘’'
+  modifyAnchors: 0
+  anchorAlias: false
+  autolink: true
+  mangle: true
+  sanitizeUrl: false
+  headerIds: true
+  lazyload: false
+  prependRoot: false
+  postAsset: false
+  external_link:
+    enable: false
+    exclude: []
+    nofollow: false
+  disableNunjucks: false
+  descriptionLists: true
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')

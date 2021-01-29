@@ -12,31 +12,31 @@ jobs:
       - uses: actions/checkout@v2
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-      - name: Cache NPM dependencies
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-npm-cache
-          restore-keys: |
-            ${{ runner.OS }}-npm-cache
-      - name: Install Dependencies
-        run: npm install
-      - name: Clean
-        run: npm run clean
-      - name: Build
-        run: npm run build
-      - name: ls
-        run: ls -al && ls -al public && pwd && cat public/index.html
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          force_orphan: true
-          # publish_dir: ./public
-          keep_files: true
-          # allow_empty_commit: true
-          # publish_branch: source
-          # publish_branch: master
-          cname: blog.tjerkwoudsma.com
+#         with:
+#           node-version: '12.x'
+#       - name: Cache NPM dependencies
+#         uses: actions/cache@v2
+#         with:
+#           path: node_modules
+#           key: ${{ runner.OS }}-npm-cache
+#           restore-keys: |
+#             ${{ runner.OS }}-npm-cache
+#       - name: Install Dependencies
+#         run: npm install
+#       - name: Clean
+#         run: npm run clean
+#       - name: Build
+#         run: npm run build
+#       - name: ls
+#         run: ls -al && ls -al public && pwd && cat public/index.html
+#       - name: Deploy
+#         uses: peaceiris/actions-gh-pages@v3
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           force_orphan: true
+#           # publish_dir: ./public
+#           keep_files: true
+#           # allow_empty_commit: true
+#           # publish_branch: source
+#           # publish_branch: master
+#           cname: blog.tjerkwoudsma.com
