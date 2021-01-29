@@ -105,7 +105,7 @@ theme: clean-blog
 deploy:
   type: git
   repo: https://github.com/woudsma/woudsma.github.io
-  branch: source
+  branch: gh-pages
 
 sitemap:
   path: sitemap.xml
@@ -129,4 +129,4 @@ twitter_url:
 facebook_url:
 github_url: https://github.com/woudsma
 linkedin_url:
-mailto:
+mailto: info@tjerkwoudsma.com
