@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Dev Blog
-subtitle: "By Tjerk Woudsma"
+title: console.blog
+subtitle: "Tjerk Woudsma"
 description: 'Personal blog'
 keywords: blog,tjerkwoudsma,woudsma,dev,javascript,python,docker,react
 author: Tjerk Woudsma
@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: https://woudsma.github.io
+url: https://blog.tjerkwoudsma.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
