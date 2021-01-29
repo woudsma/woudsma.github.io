@@ -5,7 +5,7 @@
 # Site
 title: Dev Blog
 subtitle: "By Tjerk Woudsma"
-description: 'My personal blog'
+description: 'Personal blog'
 keywords: blog,tjerkwoudsma,woudsma,dev,javascript,python,docker,react
 author: Tjerk Woudsma
 language: en
@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: https://blog.tjerkwoudsma.com
+url: https://woudsma.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -103,7 +103,9 @@ theme: clean-blog
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/woudsma/woudsma.github.io
+  branch: source
 
 sitemap:
   path: sitemap.xml
