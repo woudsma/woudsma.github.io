@@ -35,7 +35,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           # keep_files: true
-          allow_empty_commit: true
+          # allow_empty_commit: true
           # publish_branch: source
           # publish_branch: master
           cname: blog.tjerkwoudsma.com
