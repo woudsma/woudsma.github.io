@@ -33,4 +33,5 @@ jobs:
           # keep_files: true
           # allow_empty_commit: true
           # publish_branch: source
+          publish_branch: master
           cname: blog.tjerkwoudsma.com
