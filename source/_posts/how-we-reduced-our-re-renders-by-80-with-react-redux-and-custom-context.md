@@ -203,7 +203,7 @@ const FormContainer = ({ formId, children, ...props }) => {
         });
       }
     },
-    [dispatch, requiredFieldsFilled, values],
+    [dispatch, requiredFieldsFilled, formId, values],
   );
 
   return (
@@ -276,7 +276,7 @@ import FormInput from "./FormInput";
  *
  * @returns {React.FC}
  */
-const FormInputContainer = ({ children, ...props }) => {
+const FormInputContainer = ({ name, children, ...props }) => {
   /**
    * ❌ creates a subscription and triggers a re-render on all updates to FormContext.
    */
@@ -296,9 +296,9 @@ const FormInputContainer = ({ children, ...props }) => {
 
   const onChangeHandler = useCallback(
     (e) => {
-      setValue(e.target.value);
+      setValue(name, e.target.value);
     },
-    [setValue],
+    [setValue, name],
   );
 
   return (
