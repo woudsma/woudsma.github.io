@@ -8,7 +8,9 @@ title: How we reduced our re-renders by 80% with React Redux and custom hooks
 
 ### Your app currently looks something like this
 
-```js title="App.jsx"
+<!--  title="App.jsx" -->
+
+```js
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
@@ -102,7 +104,7 @@ const App = () => (
 export default App;
 ```
 
-## Seperate logic from presentation with container and presentational components
+### Seperate logic from presentation with container and presentational components
 
 Presentational components can be tested with ease. Simply mock the required props and you're good to go.
 You should be able to write these components without the `return` keyword, as in the following example.
@@ -151,7 +153,7 @@ const FormContext = createContext(null);
 export default FormContext;
 ```
 
-## Create the container components
+### Create the container components
 
 ```js
 import React, { useCallback, useEffect, useRef } from "react";
@@ -303,9 +305,7 @@ const FormInputContainer = ({ children, ...props }) => {
 export default FormInputContainer;
 ```
 
-## Setting up some example complex logic of our form
-
-### Utility functions
+### Setting up some example complex logic of our form
 
 We would need to validate input, write things to localStorage - but not when it's a password - etc.
 
@@ -330,7 +330,7 @@ export const validateInput = (value, validationRule) => {
 };
 ```
 
-## This is where the magic happens
+### This is where the magic happens
 
 **Hooks.**
 
@@ -527,7 +527,7 @@ export const useFormActions = () => {
 };
 ```
 
-## The cherry on top - [reselect](https://github.com/redux/reselect)
+### The cherry on top - [reselect](https://github.com/redux/reselect)
 
 Organize and create your store value selectors in a central location to be re-used across multiple components.
 A great advantage of writing selectors like this is that each selector is a 'pure' function. Which is awesome insurance against side-effects.
@@ -595,7 +595,7 @@ export const requiredFieldsFilledSelector = createSelector(
 );
 ```
 
-## Combining selectors and using arguments
+### Combining selectors and using arguments
 
 You can imagine that a form store contains many properties, some of which you want to combine to create new - more specific - values.
 Some components don't need a subscription to the entire `formConfigs` object in the following example snippet.
