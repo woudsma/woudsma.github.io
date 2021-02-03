@@ -1,5 +1,5 @@
 ---
-title: How we reduced our re-renders by 80% with React Redux and custom hooks
+title: How we reduced our re-renders by 80% with React Redux and custom context
 ---
 
 ## Introduction
@@ -84,7 +84,7 @@ export default createStore(reducer);
 ```js
 import React from "react";
 
-import FormContainer from "./FormContainer";
+import { FormContainer } from "./FormContainer";
 
 /**
  * App component with some example form components.
@@ -253,8 +253,9 @@ const FormContainerProvider = ({
 
 /**
  * Export the form container provider instead of the form container component.
+ * I'm renaming the wrapper back to FormContainer in the export, but that's optional.
  */
-export default FormContainerProvider;
+export { FormContainerProvider as FormContainer };
 ```
 
 ### Retrieving form values and firing actions from a deeply nested component
@@ -280,6 +281,11 @@ const FormInputContainer = ({ children, ...props }) => {
    * ❌ creates a subscription and triggers a re-render on all updates to FormContext.
    */
   // const { someValue } = useContext(FormContext);
+
+  /**
+   * ⚠️ creates a subscription to a single store value.
+   */
+  // const someValue = useFormSelector(state => state.someValue);
 
   /**
    * ✅ creates a memoized subscription to a single store value.
@@ -318,11 +324,11 @@ We would need to validate input, write things to localStorage - but not when it'
  * @returns {boolean} isValid
  */
 export const validateInput = (value, validationRule) => {
-  if (value.length > validationRule.maxLength) {
+  if (value?.length > validationRule?.maxLength) {
     return false;
   }
 
-  if (!value && validationRule.isRequired) {
+  if (!value && validationRule?.isRequired) {
     return false;
   }
 
@@ -341,7 +347,7 @@ React Redux exposes three useful functions which we can use to create custom red
 - `createSelectorHook`
 
 If we pass a context into these functions, we can create custom `useDispatch` and `useSelector` functions, that only operate on the 'local' / 'sub' store, the form store in our case.
-In this post I'm creating `useFormSelector` for example, but if you're creating complex modals you could create `useModalDispatch` and `useModalSelector`, and use them if you have a context + store set up as shown above in `FormContainer.jsx`.
+In this post I'm creating `useFormSelector` for example, but if you're creating complex modals you could create `useModalDispatch` and `useModalSelector` for example - and use them if you have a context + store set up as shown above in `FormContainer.jsx`.
 
 ```js
 import { useCallback } from "react";
@@ -363,6 +369,7 @@ import { validateInput } from "./utils";
  */
 const SET_FORM_ID = "SET_FORM_ID";
 const SET_VALUE = "SET_VALUE";
+const SET_VALUE = "SET_VALIDITY_VALUE";
 const SET_VALIDATION_RULES = "SET_VALIDATION_RULES";
 const RESET_FORM_STATE = "RESET_FORM_STATE";
 
@@ -447,7 +454,7 @@ export const useFormSelector = createSelectorHook(FormContext);
  */
 export const useFormActions = () => {
   /**
-   * use useDispatch and useFormDispatch to be able to
+   * Use useDispatch and useFormDispatch to be able to
    * dispatch actions to both the form store and the global store.
    */
   const dispatch = useDispatch();
@@ -455,7 +462,7 @@ export const useFormActions = () => {
 
   /**
    * Get (aka select) some values from the form store with 'useFormSelector'.
-   * It's no problem to use these hooks inside other hooks.
+   * It's no problem to use these hooks inside other hooks like this.
    */
   const formId = useFormSelector(formIdSelector);
   const validationRules = useFormSelector(validationRulesSelector);
@@ -484,14 +491,14 @@ export const useFormActions = () => {
       formDispatch({
         type: SET_VALUE,
         payload: { key, value },
-      }),
+      })
 
       const isValid = validateInput(value, validationRules?.[key])
 
       formDispatch({
         type: SET_VALIDITY_VALUE,
         payload: { key, value: isValid },
-      }),
+      })
     }
     [formDispatch, validateInput, validationRules],
   );
@@ -520,7 +527,6 @@ export const useFormActions = () => {
   return {
     setFormId,
     setValue,
-    setValidityValues,
     setValidationRules,
     resetFormValues,
   };
@@ -652,8 +658,25 @@ export const combinedFormConfigSelector = createDeepEqualSelector(
     ...formConfigBilling,
   }),
 );
+
+/**
+ * Or:
+ */
+export const combinedFormConfigSelector = createDeepEqualSelector(
+  formConfigShippingSelector,
+  formConfigBillingSelector,
+  (...args) => Object.assign({}, ...args),
+);
+
+/**
+ * Transforming the selection even further:
+ */
+export const combinedFormConfigValuesSelector = createDeepEqualSelector(
+  combinedFormConfigSelector,
+  Object.values,
+);
 ```
 
-If you found this interesting, consider following me on [Github](https://github.com/woudsma). I'm very much open to questions/feedback, don't hesitate to send a message or leave a reply ;)
+I hope these tricks can benefit you in your projects as much as it did in our case!
 
-Thanks for your attention, I hope these tricks can benefit you in your projects as much as it did in our case!
+If you found this interesting, consider following me on [Github](https://github.com/woudsma). I'm very much open to questions/feedback, don't hesitate to send a message or leave a reply ;)
