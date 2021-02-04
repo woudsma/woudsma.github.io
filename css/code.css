@@ -4,6 +4,10 @@
   background-color: #f8f8f8;
   border: 1px solid #eee;
 }
+h3 > a {
+  color: #0085a1;
+  text-decoration: underline;
+}
 .highlight td.code {
   padding-left: 0 !important;
 }
