@@ -618,6 +618,7 @@ pre .deletion {
   padding: 10px;
   background-color: #f8f8f8;
   border: 1px solid #eee;
+  margin-bottom: 25px;
 }
 h3 > a {
   color: #0085a1;
