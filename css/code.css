@@ -88,3 +88,16 @@ h3 > a {
 .hljs-strong {
   font-weight: bold;
 }
+.code .hljs.js {
+  font-size: 1.5rem;
+}
+.hljs.filepath {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+  box-sizing: border-box;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  border-bottom: 1px solid #000;
+}

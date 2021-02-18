@@ -32,7 +32,7 @@ h6,
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 body {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: #404040;
 }
 p {
@@ -468,7 +468,6 @@ article .container .row .video-container embed {
 article .container .row blockquote {
   font-style: italic;
   font-family: "Georgia", serif;
-  font-size: 1.2em;
   padding: 0 30px 15px;
   text-align: center;
 }
@@ -506,7 +505,6 @@ figure.highlight {
   line-height: 1.6;
   overflow: auto;
   position: relative;
-  font-size: 0.9em;
 }
 figure.highlight figcaption {
   color: #999;
@@ -702,4 +700,17 @@ h3 > a {
 }
 .hljs-strong {
   font-weight: bold;
+}
+.code .hljs.js {
+  font-size: 1.5rem;
+}
+.hljs.filepath {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+  box-sizing: border-box;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  border-bottom: 1px solid #000;
 }

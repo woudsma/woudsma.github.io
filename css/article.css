@@ -23,7 +23,6 @@ article .container .row .video-container embed {
 article .container .row blockquote {
   font-style: italic;
   font-family: font-serif;
-  font-size: 1.2em;
   padding: 0 30px 15px;
   text-align: center;
 }
@@ -61,7 +60,6 @@ figure.highlight {
   line-height: 1.6;
   overflow: auto;
   position: relative;
-  font-size: 0.9em;
 }
 figure.highlight figcaption {
   color: color-meta;
