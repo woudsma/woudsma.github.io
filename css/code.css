@@ -101,3 +101,6 @@ h3 > a {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   border-bottom: 1px solid #000;
 }
+.clickable {
+  cursor: pointer;
+}
