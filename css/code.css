@@ -104,3 +104,6 @@ h3 > a {
 .clickable {
   cursor: pointer;
 }
+.container .row li {
+  line-height: 2.5rem;
+}
